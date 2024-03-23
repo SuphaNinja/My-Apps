@@ -1,11 +1,11 @@
 import { Button, Link, Navbar, NavbarContent, NavbarItem } from "@nextui-org/react"
-
-
+import SignInButton from "./SignInButton"
 
 
 export const AppBar = () => {
+  
     return (
-        <Navbar isBordered>
+        <Navbar isBordered maxWidth="full">
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           <NavbarItem>
             <Link color="foreground" href="/">
@@ -15,9 +15,7 @@ export const AppBar = () => {
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem>
-            <Button as={Link} color="primary" href="/auth/signup" variant="flat">
-              Sign Up
-            </Button>
+            <SignInButton />
           </NavbarItem>
         </NavbarContent>
       </Navbar>
