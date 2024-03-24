@@ -9,6 +9,9 @@ const SignUpPage = () => {
                 <p className="text-center p-2">Already Signed up?</p>
                 <Link href="/auth/signin">Sign In</Link>
             </div>
+            <div>
+
+            </div>
             <div className="w-full">
                 <SignUpForm />
             </div>

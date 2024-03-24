@@ -9,7 +9,8 @@ export async function registerUser(user: Omit< User, "id" | "emailVerified" | "i
         data: {
             ...user,
             password: await bcrypt.hash(user.password, 10),
-        }
+        },
+        
     });
 };
     

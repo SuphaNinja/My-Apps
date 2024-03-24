@@ -10,6 +10,7 @@ import { passwordStrength } from "check-password-strength";
 import PasswordStrength from "./PasswordStrength";
 import { registerUser } from "@/lib/actions/authActions";
 import { toast } from "react-toastify";
+import { redirect } from "next/dist/server/api-utils";
     
 
 const FormSchema = z.object({
@@ -82,6 +83,7 @@ const SignUpForm = () => {
             console.error(error);
         } finally {
             reset();
+            window.location.href = "/auth/signin";
         }
     };
 

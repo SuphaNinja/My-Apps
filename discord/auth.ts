@@ -10,61 +10,41 @@ import { encode, decode } from "next-auth/jwt";
 import { User } from "@prisma/client";
 
 
+
+
 const credentialsConfig = CredentialsProvider({
     name: "Credentials",
     
     credentials: {
-        userName: { label: "Username", type: "text", placeholder: "Enter your username." },
+        userName: { label: "Email", type: "text", placeholder: "Enter your username." },
         password: { label: "Password", type: "password" },
     },
 
     async authorize(credentials, req) {
         const InputUserName = credentials.userName as string;
         const InputPassword = credentials.password as string;
-
-        const userByUsername = await prisma.user.findUnique({
+        const user = await prisma.user.findUnique({
             where: {
-                userName: InputUserName || undefined
+                email: InputUserName,
             }
         });
 
-        const userByEmail = await prisma.user.findUnique({
-            where: {
-                email: InputUserName || undefined
-            }
-        });
-
-        if(!userByUsername && !userByEmail) throw new Error("Username or password is incorrect.");
-
-        let isPasswordCorrect = false;
-        let userWithoutPass: Omit<User, "password"> | undefined = undefined;
-
-        if (userByEmail) { 
-            isPasswordCorrect = await bcrypt.compare(InputPassword, userByEmail.password);
-            let { password, ...userWithoutPassTemp } = userByEmail;
-            userWithoutPass = userWithoutPassTemp;
-        }
-        if (userByUsername) { 
-            isPasswordCorrect = await bcrypt.compare(InputPassword, userByUsername.password);
-            let { password, ...userWithoutPassTemp } = userByUsername;
-            userWithoutPass = userWithoutPassTemp;
-        }
+        if(!user) throw new Error("Username or password is incorrect.");
         
-    if(!credentials?.password) throw new Error("Please provide a password.");
-    
+       if(!credentials?.password) throw new Error("Please provide a password.");
+       const isPasswordCorrect = await bcrypt.compare(InputPassword, user.password);
 
-    if(!isPasswordCorrect) throw new Error("Email or password is incorrect.");
+       if(!isPasswordCorrect) throw new Error("Email or password is incorrect.");
 
-    
-    if (!userWithoutPass) throw new Error("User not found.");
-        
-    return userWithoutPass;
-    
+       const { password, ...userWithoutPass } = user;
+       return userWithoutPass ;
     }
 });
 
 export const config = {
-    
+    pages: {
+        signIn: "/auth/signin",
+    },
     adapter: PrismaAdapter(prisma),
     session: {
         strategy: "jwt"
@@ -74,7 +54,7 @@ export const config = {
         Github,
         credentialsConfig,
     ],
-    callbacks: {
+    callbacks: {    
         async jwt({ token, user }) {
             if (user) token.user = user as User;
             return token;
