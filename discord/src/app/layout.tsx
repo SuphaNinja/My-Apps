@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
-import { AppBar } from "./components/AppBar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,7 +21,6 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={inter.className}>
         <Providers>
-          <AppBar />
           {children}
           <ToastContainer />
         </Providers>
