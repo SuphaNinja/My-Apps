@@ -1,17 +1,16 @@
 "use client"
-import { Link } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
+
 import SideBarNavigation from "@/app/components/SideBarNavigation";
 import BottomBar from "./components/BottomBar";
 import TopSection from "./components/TopSection";
-import Section1 from "./components/homepage/Section1";
-import Section2 from "./components/homepage/Section2";
-import Section3 from "./components/homepage/Section3";
+import Section1 from "./pages/homepage/Section1";
+import Section2 from "./pages/homepage/Section2";
+import Section3 from "./pages/homepage/Section3";
 
 const HomePage = () => {
 
-    const { data: session } = useSession();
+    const  session  = useSession();
 
     
 
@@ -27,6 +26,7 @@ const HomePage = () => {
                     <div className="col-span-6 border-x-2 border-slate-500 "><Section2/></div>
                     <div className="col-span-3 border-slate-500 "><Section3/></div>
                 </div>
+                <button onClick={() => console.log(session.data?.user)}>test</button>
                 <BottomBar/>
             </div>
         </div>

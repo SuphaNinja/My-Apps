@@ -15,14 +15,9 @@ import HoverableLink from "./HoverableLink";
 export default function SideBarNavigation () {
     const { data: session } = useSession();
     
-    
-    const test = () => {
-        console.log(session)
-    }
 
     return (
         <nav className="flex flex-col items-center justify-between h-full py-4 pt-8 ">
-            <button onClick={test}>test</button>
             {session && session.user ? (
             <Dropdown  placement="right">
                 <DropdownTrigger className="text-xl underline underline-offset-2 mr-2 text-cyan-300">
@@ -34,7 +29,7 @@ export default function SideBarNavigation () {
                         <p className="font-semibold">{session.user.email}</p>
                     </DropdownItem>
                     <DropdownItem>
-                        <Link className="" href={"/pages/profilePage"}>Profile</Link>
+                        <Button  as={Link} className="" href={"/pages/profilePage"}>Profile</Button>
                     </DropdownItem>
                     <DropdownItem>
                         <Button color="" size="md" className="p-0" onClick={() => signOut()}>Sign out</Button>

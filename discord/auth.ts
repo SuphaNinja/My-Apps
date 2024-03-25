@@ -58,7 +58,7 @@ export const config = {
                   access_type: "offline",
                   response_type: "code"
                 }
-            }
+            },
         }),
         Github,
         credentialsConfig,
