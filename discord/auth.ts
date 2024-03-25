@@ -32,7 +32,7 @@ const credentialsConfig = CredentialsProvider({
         if(!user) throw new Error("Username or password is incorrect.");
         
        if(!credentials?.password) throw new Error("Please provide a password.");
-       const isPasswordCorrect = await bcrypt.compare(InputPassword, user.password);
+       const isPasswordCorrect = user.password && await bcrypt.compare(InputPassword, user.password);
 
        if(!isPasswordCorrect) throw new Error("Email or password is incorrect.");
 

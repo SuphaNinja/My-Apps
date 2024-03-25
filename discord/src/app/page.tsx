@@ -5,6 +5,9 @@ import Image from "next/image";
 import SideBarNavigation from "@/app/components/SideBarNavigation";
 import BottomBar from "./components/BottomBar";
 import TopSection from "./components/TopSection";
+import Section1 from "./components/homepage/Section1";
+import Section2 from "./components/homepage/Section2";
+import Section3 from "./components/homepage/Section3";
 
 const HomePage = () => {
 
@@ -20,9 +23,9 @@ const HomePage = () => {
                     <div className="col-span-1 border-r-2 border-slate-500 ">
                         <SideBarNavigation />
                     </div>
-                    <div className="col-span-2 "></div>
-                    <div className="col-span-6 border-x-2 border-slate-500 "></div>
-                    <div className="col-span-3 border-slate-500 "></div>
+                    <div className="col-span-2 "><Section1/></div>
+                    <div className="col-span-6 border-x-2 border-slate-500 "><Section2/></div>
+                    <div className="col-span-3 border-slate-500 "><Section3/></div>
                 </div>
                 <BottomBar/>
             </div>

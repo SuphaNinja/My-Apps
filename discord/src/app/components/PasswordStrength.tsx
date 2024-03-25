@@ -7,9 +7,6 @@ interface PasswordStrengthProps {
     passStrength: number;
 };
 
-
-
-
 const PasswordStrength = ({ passStrength } : PasswordStrengthProps) => {
     return (
         <div className="flex gap-4   col-span-2">

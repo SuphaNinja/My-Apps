@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import { Cog8ToothIcon } from "@heroicons/react/20/solid";
 import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/solid";
 import { useQuery } from "@tanstack/react-query";
-import { api } from "@/lib/axios";
+import  api  from "@/lib/axios";
 
 import HoverableLink from "./HoverableLink";
 
@@ -26,7 +26,7 @@ export default function SideBarNavigation () {
             {session && session.user ? (
             <Dropdown  placement="right">
                 <DropdownTrigger className="text-xl underline underline-offset-2 mr-2 text-cyan-300">
-                    <div><HoverableLink href="#" /* href={"app/profile" + session.user.id} */ icon={session.user.image ? <img src={session.user.image}/> : <UserCircleIcon className="w-12"/>} text={"Account"}/></div>
+                    <div><HoverableLink href="#" /* href={"app/profile" + session.user.id} */ icon={session.user.image ? <div className="rounded-full overflow-hidden w-16"><img src={session.user.image}/></div> : <UserCircleIcon className="w-12"/>} text={"Account"}/></div>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Profile Actions" variant="flat">
                     <DropdownItem key="profile" className="h-14 gap-2">
