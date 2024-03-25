@@ -42,6 +42,7 @@ const credentialsConfig = CredentialsProvider({
 });
 
 export const config = {
+    secret: process.env.SECRET,
     pages: {
         signIn: "/auth/signin",
     },
@@ -50,7 +51,15 @@ export const config = {
         strategy: "jwt"
     },
     providers: [
-        Google,
+        Google({
+            authorization: {
+                params: {
+                  prompt: "consent",
+                  access_type: "offline",
+                  response_type: "code"
+                }
+            }
+        }),
         Github,
         credentialsConfig,
     ],

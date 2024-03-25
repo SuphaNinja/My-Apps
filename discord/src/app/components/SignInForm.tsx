@@ -50,7 +50,7 @@ const SignInForm = (props: Props) => {
 
 
     return (
-        <form onSubmit={handleSubmit(OnSubmit)} className="flex flex-col gap-3 border shadow rounded-xl overflow-hidden ww-full md:w-1/2 mb-4 ">
+        <div className="flex flex-col gap-3 border shadow rounded-xl overflow-hidden ww-full md:w-1/2 mb-4 ">
             <div className="bg-gradient-to-b p-2 text-center from-white to-slate-200 dark:from-slate-700 dark:to-slate-900">
                 Sign In Form
             </div>
@@ -62,7 +62,7 @@ const SignInForm = (props: Props) => {
             </button>
             
             <hr className="w-2/3 mx-auto"/>
-            <div className="p-4 flex flex-col gap-4">
+            <form onSubmit={handleSubmit(OnSubmit)} className="p-4 flex flex-col gap-4">
                 <Input
                     label="Email"
                     {...register("email")} 
@@ -70,7 +70,7 @@ const SignInForm = (props: Props) => {
                     errorMessage={errors.email?.message}
                     isInvalid={!!errors.email}
                 />
-                <Input 
+                <Input
                     label="Password"
                     {...register("password")} 
                     type={visiblePass ? "text" : "password"}
@@ -86,8 +86,8 @@ const SignInForm = (props: Props) => {
                     <Button className="w-full md:w-1/3 mx-auto md:text-xl" color="primary" type="submit" disabled={isSubmitting} isLoading={isSubmitting}>
                         {isSubmitting ? "Signing In..." : "Sign in"}
                     </Button>
-            </div>
-        </form>
+            </form>
+        </div>
     )
 
 }

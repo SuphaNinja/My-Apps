@@ -13,7 +13,7 @@ const HomePage = () => {
     
 
     return (
-        <div className="flex  justify-center md:mt-4 md:mx-12 ">
+        <div className="flex justify-center md:mt-6 md:mx-12">
             <div className="bg-slate-700 flex flex-col w-full  overflow-hidden rounded-xl h-[800px]">
                 <TopSection />
                 <div className="grid grid-cols-12 h-full border-t-1 border-neutral-200">
